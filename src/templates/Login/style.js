@@ -37,14 +37,15 @@ export const Input = styled.input`
    width: 326px;
    height: 58px;
    padding-left: 15px;
-   background-color: ${props => props.disabled ? "#F2F2F2":"#FFFFFF"};
+   background-color: #FFFFFF;
    border-radius: 5px;
    border: none;
    margin-bottom: 12px; 
    font-size: 20px;
 
    &::placeholder {
-      color: ${props => props.disabled ? "#AFAFAF":"#000000"}
+      color: #000000;
+      font-family: 'Raleway', sans-serif;
       font-style: normal;
       font-weight: 400;
       font-size: 20px;
@@ -66,7 +67,6 @@ export const Entrar = styled.button`
    color: #FFFFFF;
    margin-left: 23px;
    margin-top: 10px;
-   opacity:${props => props.disabled ? "0.5" : ""}; 
 `;
 
 

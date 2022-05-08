@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import UsuarioContext from "../../context/UsuarioContext.js";
-//import CarregandoContext from "../../context/CarregandoContext.js";
 //import { ThreeDots } from "react-loader-spinner";
 
 import { Main, DivLogo, DivTexto, DivInputs, Input, Entrar } from "./style.js";
@@ -14,7 +13,7 @@ function Login({ salvarToken }) {
 
   const navigate = useNavigate();
 
-  //const { dataUsuario, setDataUsuario } = useContext(UsuarioContext);
+  const { dataUsuario, setDataUsuario } = useContext(UsuarioContext);
 
   function signIn(event) {
     event.preventDefault();
