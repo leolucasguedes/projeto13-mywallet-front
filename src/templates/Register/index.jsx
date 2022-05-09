@@ -10,13 +10,10 @@ function Register() {
   const [nome, setNome] = useState("");
   const [confirmation, setConfirmation] = useState("");
 
-  //const [carregando, setCarregando] = useState(false);
-
   const navigate = useNavigate();
 
   function signUp(event) {
     event.preventDefault();
-    //setCarregando(true);
     const URL = "https://localhost:5000";
     const promise = axios.post(URL, {
       email: email,
@@ -25,12 +22,27 @@ function Register() {
       confirmation: confirmation,
     });
     promise.then((response) => {
-      //const { data } = response;
-      //console.log(data);
+      const { data } = response;
+      setDataUsuario({
+        ...dataUsuario,
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        token: data.token,
+      });
+
       navigate("/");
-      //setCarregando(false);
     });
-    promise.catch((err) => alert("Preencha os campos corretamente"));
+    promise.catch(({ response }) => {
+      setDataUsuario({
+        ...dataUsuario,
+        email: "",
+        password: "",
+        name: "",
+        token: "",
+      });
+      alert("Preencha os campos corretamente");
+    });
   }
 
   return (

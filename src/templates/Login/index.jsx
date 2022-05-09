@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import UsuarioContext from "../../context/UsuarioContext.js";
-//import { ThreeDots } from "react-loader-spinner";
 
 import { Main, DivLogo, DivTexto, DivInputs, Input, Entrar } from "./style.js";
 
@@ -17,8 +16,6 @@ function Login({ salvarToken }) {
 
   function signIn(event) {
     event.preventDefault();
-
-    //setCarregando(true);
 
     const URL = "https://localhost:5000";
     const promise = axios.post(URL, {
@@ -34,16 +31,17 @@ function Login({ salvarToken }) {
         name: data.name,
         token: data.token,
       });
-      //console.log(data);
+      const serializedData = JSON.stringify({
+        token: data.token,
+        name: data.name,
+      });
+      localStorage.setItem("userData", serializedData);
 
       salvarToken(data.token);
 
-      navigate("/registros");
-      //setCarregando(false);
+      navigate("/myrecords");
     });
     promise.catch(({ response }) => {
-      //console.log(response);
-      //setCarregando(false);
       setDataUsuario({
         ...dataUsuario,
         email: "",
@@ -80,7 +78,7 @@ function Login({ salvarToken }) {
         <Entrar type="submit">Entrar</Entrar>
       </form>
       <DivTexto>
-        <Link to={`/cadastro`}>
+        <Link to={`/signup`}>
           <p>Primeira Vez? Cadastre-se!</p>
         </Link>
       </DivTexto>
