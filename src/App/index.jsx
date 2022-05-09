@@ -27,10 +27,10 @@ function App() {
             path="/"
             element={<Login salvarToken={(token) => setToken(token)} />}
           ></Route>
-          <Route path="/cadastro" element={<Register />}></Route>
-          <Route path="/registros" element={<Records token={token} />}></Route>
-          <Route path="/novaentrada" element={<Entry />}></Route>
-          <Route path="/novasaida" element={<Exit />}></Route>
+          <Route path="/signup" element={<Register />}></Route>
+          <Route path="/myrecords" element={<Records token={token} />}></Route>
+          <Route path="/entrada" element={<Entry />}></Route>
+          <Route path="/saida" element={<Exit />}></Route>
         </Routes>
       </BrowserRouter>
     </UsuarioContext.Provider>

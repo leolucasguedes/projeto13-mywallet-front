@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import {
   Main,
@@ -9,13 +10,28 @@ import {
   NoRecords,
 } from "./style.js";
 
-function Records() {
+function Records({ token }) {
+  const navigate = useNavigate();
+  function logOut() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const URL = "https://localhost:5000";
+    const promise = axios.put(`${URL}/home`, {}, config);
+    promise.then(() => {
+      navigate("/");
+    });
+    promise.catch((err) => console.log(err));
+  }
+
   return (
     <>
       <Main>
         <DivNome>
           <h1>Olá, Fulano</h1>
-          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-icon onClick={logOut} name="log-out-outline"></ion-icon>
         </DivNome>
         <DivRegistros>
           <NoRecords>
@@ -24,13 +40,13 @@ function Records() {
         </DivRegistros>
         <DivBot>
           <DivButton>
-            <Link to={`/novaentrada`}>
+            <Link to={`/entrada`}>
               <ion-icon name="add-circle-outline"></ion-icon>
             </Link>
             <p>Nova entrada</p>
           </DivButton>
           <DivButton>
-            <Link to={`/novasaida`}>
+            <Link to={`/saida`}>
               <ion-icon name="remove-circle-outline"></ion-icon>
             </Link>
             <p>Nova saída</p>

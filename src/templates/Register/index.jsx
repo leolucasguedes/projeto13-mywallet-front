@@ -22,27 +22,10 @@ function Register() {
       confirmation: confirmation,
     });
     promise.then((response) => {
-      const { data } = response;
-      setDataUsuario({
-        ...dataUsuario,
-        email: data.email,
-        password: data.password,
-        name: data.name,
-        token: data.token,
-      });
 
       navigate("/");
     });
-    promise.catch(({ response }) => {
-      setDataUsuario({
-        ...dataUsuario,
-        email: "",
-        password: "",
-        name: "",
-        token: "",
-      });
-      alert("Preencha os campos corretamente");
-    });
+    promise.catch((err) => alert("Preencha os campos corretamente"));
   }
 
   return (
