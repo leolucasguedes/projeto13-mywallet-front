@@ -14,7 +14,7 @@ function Register() {
 
   function signUp(event) {
     event.preventDefault();
-    const URL = "https://localhost:5000";
+    const URL = "https://localhost:5000/signup";
     const promise = axios.post(URL, {
       email: email,
       name: nome,

@@ -17,7 +17,7 @@ function Login({ salvarToken }) {
   function signIn(event) {
     event.preventDefault();
 
-    const URL = "https://localhost:5000";
+    const URL = "https://localhost:5000/";
     const promise = axios.post(URL, {
       email: email,
       password: senha,
